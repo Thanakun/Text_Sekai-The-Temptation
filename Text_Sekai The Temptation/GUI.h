@@ -12,16 +12,33 @@
 #include<SFML/Network.hpp>
 #include<SFML/Window.hpp>
 
+#include<iostream>
+#include<sstream>
+#include<string>
+
+
 class GUI {
 public:
 	//construtor and disstrutor
 	GUI();
 	virtual ~GUI();
 
-	//some public function
+	//Update functions
 	void Update();
+	void UpdateText1(std::string);
+	void UpdateText2(std::string);
+	/*void UpdateText3(std::string);
+	void UpdateText4(std::string);
+	void UpdateText5(std::string);*/ 
+	
+	//Rendering functions
 	void Render();
-
+	void RenderText1(sf::RenderTarget &T);
+	void RenderText2(sf::RenderTarget &H);
+	//void RenderText3(sf::RenderTarget &O);
+	//void RenderText4(sf::RenderTarget &O);
+	//void RenderText5(sf::RenderTarget &P);
+	
 	//Event
 	void pollEvent();
 
@@ -35,10 +52,18 @@ private:
 	sf::Event Eve;
 	sf::VideoMode videomode;
 	
+	//Resouces
+	sf::Font font;
+	
 	//text declaring
-	sf::Text info;
-	sf::Text in_arrow;
+	sf::Text main_line1;
+	sf::Text main_line2;
+	sf::Text main_line3;
+	sf::Text main_line4;
+	sf::Text main_line5;
+	/*sf::Text main_*/
 	sf::String sentence;
+	//sf::String* holdersentence;
 	
 
 
