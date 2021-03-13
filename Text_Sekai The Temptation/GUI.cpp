@@ -3,6 +3,9 @@
 */
 #include"GUI.h"
 
+unsigned int textsize;
+std::string textadmin;
+
 
 /*
 	constructors and distrutor zone
@@ -46,20 +49,47 @@ void GUI::UpdateText1(std::string s1)
 }
 void GUI::UpdateText2(std::string s2)
 {
-	std::stringstream ss2;
+	std::ostringstream ss2;
 	ss2 << s2;
-	this->main_line2.setString(ss2.str());
+	unsigned int sizes2 = s2.find_first_of(","); // find that last space of the string
+	if (sizes2 == -1) {
+		sizes2 = s2.find_first_of(".");
+	}
+	std::string t = ss2.str();
+	std::string newT = "";
+	if (sizes2 > 30) {
+		for (unsigned int i = 0; i < sizes2;i++) { // display the string untill found the last space of string!
+			newT += t[i];
+		}
+	}
+	s2.erase(0, sizes2);
+	sizes2 = s2.size();
+	::textsize = sizes2;
+	this->main_line2.setString(newT);
 }
-void GUI::UpdateText3(std::string s3) 
+void GUI::UpdateText3(std::string s3)
 {
 	std::stringstream ss3;
 	ss3 << s3;
 	this->main_line3.setString(ss3.str());
 }
-//void GUI::UpdateText4(std::string s4)
-//{
-//
-//}
+void GUI::UpdateText4(std::string s4)
+{
+	std::ostringstream ss4;
+	unsigned int sizestring = s4.find_first_of(",");
+	if (sizestring == -1) {
+		sizestring = s4.find_first_of(".");
+	}
+	s4[sizestring] = '-';
+	s4.erase(0, sizestring);
+	ss4 << s4;
+	std::string t = ss4.str();
+	std::string newa = "";
+	for (unsigned int i = 0; i < ::textsize; i++) {
+		newa += t[i];
+	}
+	this->main_line4.setString(newa);
+}
 //void GUI::UpdateText3(std::string s5) 
 //{
 //
@@ -115,12 +145,12 @@ void GUI::pollEvent()
 		//Checking event happening.
 		switch (this->Eve.type)
 		{
-		//For close buttom.
+			//For close buttom.
 		case sf::Event::Closed:
 			std::cout << "Event::Eve You just pressed X" << std::endl;
 			this->window->close();
 			break;
-		//For when press Escape key.
+			//For when press Escape key.
 		case sf::Event::KeyPressed:
 			if (this->Eve.key.code == sf::Keyboard::Escape)
 			{
@@ -128,11 +158,11 @@ void GUI::pollEvent()
 				this->window->close();
 			}
 			break;
-		//Showing current resolutiom if changed.
+			//Showing current resolutiom if changed.
 		case sf::Event::Resized:
 			printf("Current resolution:%i,%i\n", Eve.size.width, Eve.size.height);
 			break;
-		//For entering text.
+			//For entering text.
 		case sf::Event::TextEntered:
 			this->InputText();
 
@@ -144,25 +174,25 @@ void GUI::pollEvent()
 
 void GUI::InputText()
 {
-		if (this->Eve.text.unicode >= 32 && Eve.text.unicode <= 126 && input.getSize() < 20) // รับอินพุทต์แค่ 32 - 126 ในตารางยูนิโค้ดและจำกัดมันไว้แค่ 20 ตัวอักษร
+	if (this->Eve.text.unicode >= 32 && Eve.text.unicode <= 126 && input.getSize() < 20)
+	{
+
+		input += (char)Eve.text.unicode;
+	}
+	else if (Eve.text.unicode == 8 /*Delete key*/ && input.getSize() > 0) // 
+	{
+		input.erase(input.getSize() - 1, input.getSize()); 
+	}
+	else if (Eve.text.unicode == 13/*Enter key*/ && input.getSize()) //  ENTER 
+	{
+		for (unsigned int i = 0; i < input.getSize(); i++)
 		{
-			
-			input += (char)Eve.text.unicode; // ใส่ตัวอักษร char ทีละตัวลงไป
+			this->holder[i] = tolower(this->input[i]);
 		}
-		else if (Eve.text.unicode == 8 /*Delete key*/ && input.getSize() > 0) // ลบตัวอักษร
-		{
-			input.erase(input.getSize() - 1, input.getSize()); // ลบตามขนาดลงไปทีละตัว
-		}
-		else if (Eve.text.unicode == 13/*Enter key*/ && input.getSize()) // กด ENTER 
-		{
-			for (unsigned int i = 0; i < input.getSize(); i++)
-			{
-				this->holder[i] = tolower(this->input[i]);
-			}
-			std::cout << "GUI::Input I got :" << this->holder << std::endl;
-			
-			input.clear();
-		}
+		std::cout << "GUI::Input I got :" << this->holder << std::endl;
+
+		input.clear();
+	}
 }
 
 
@@ -170,7 +200,7 @@ void GUI::InputText()
 	Returning function
 */
 
-bool GUI::ChecknGetInputStr(std::string &s1)
+bool GUI::ChecknGetInputStr(std::string& s1)
 {
 	if (*this->holder != 0)
 	{
@@ -200,11 +230,11 @@ void GUI::InitWindow()
 }
 
 void GUI::InitText()
-{	
+{
 	//loading font
-	if(this->font.loadFromFile("Resouces/Font/Simple_text.ttf"))
+	if (this->font.loadFromFile("Resouces/Font/Simple_text.ttf"))
 	{
-		std::cout << "GUI::font loaded successfully"<<std::endl;
+		std::cout << "GUI::font loaded successfully" << std::endl;
 	}
 
 	//Setting Inout text
@@ -224,12 +254,12 @@ void GUI::InitText()
 	this->main_line3.setFont(this->font);
 	this->main_line3.setCharacterSize(23);
 	this->main_line3.setFillColor(sf::Color::Black);
-	this->main_line3.setPosition(50, 740);
+	this->main_line3.setPosition(50, 900);
 
 	this->main_line4.setFont(this->font);
 	this->main_line4.setCharacterSize(23);
 	this->main_line4.setFillColor(sf::Color::Black);
-	this->main_line4.setPosition(50, 560);
+	this->main_line4.setPosition(50, 740);
 
 	this->main_line5.setFont(this->font);
 	this->main_line5.setCharacterSize(23);
@@ -240,6 +270,6 @@ void GUI::InitText()
 
 void GUI::ForceClose()
 {
-	std::cout << std::endl <<"GUI::ForceClose you just force close a game";
+	std::cout << std::endl << "GUI::ForceClose you just force close a game";
 	this->window->close();
 }
