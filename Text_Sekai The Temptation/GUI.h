@@ -31,11 +31,11 @@ public:
 
 	//Rendering functions
 	void Render();
-	void RenderText1(sf::RenderTarget &T);
-	void RenderText2(sf::RenderTarget &H);
-	void RenderText3(sf::RenderTarget &O);
-	void RenderText4(sf::RenderTarget &O);
-	void RenderText5(sf::RenderTarget &P);
+	void RenderText1(sf::RenderTarget& T);
+	void RenderText2(sf::RenderTarget& H);
+	void RenderText3(sf::RenderTarget& O);
+	void RenderText4(sf::RenderTarget& O);
+	void RenderText5(sf::RenderTarget& P);
 
 	//Event
 	void pollEvent();
@@ -43,7 +43,7 @@ public:
 
 	//Accessor
 	const bool Running() const;
-	bool ChecknGetInputStr(std::string &);
+	bool ChecknGetInputStr(std::string&);
 
 	//Function
 	void ForceClose();
@@ -54,10 +54,9 @@ private:
 	sf::RenderWindow* window;
 	sf::Event Eve;
 	sf::VideoMode videomode;
-	
+
 	//Resouces
 	sf::Font font;
-
 	//text declaring
 	sf::Text main_line1;
 	sf::Text main_line2;
