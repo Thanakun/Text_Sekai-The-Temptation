@@ -8,7 +8,7 @@ Player kami;
 
 //Separeter
 
-void SplitString(std::string in_text, std::string &key, std::string &wanted) {
+void SplitString(std::string in_text, std::string& key, std::string& wanted) {
 	int holder = in_text.find_first_of(" ");
 	key = in_text.substr(0, holder);
 	wanted = in_text.substr(holder + 1);
@@ -41,8 +41,8 @@ void Player::CheckInputText(std::string key, std::string wanted)
 	if (key == "go")
 	{
 		if (wanted == " ") std::cout << "Player::CheckInputText no direction detected" << std::endl;
-		else if (kami.CheckInputDir(wanted)) std::cout << "Player::CheckInputText got direction" <<std::endl;
-		else std::cout << "Player::CheckInputText something went worng"<< std::endl;
+		else if (kami.CheckInputDir(wanted)) std::cout << "Player::CheckInputText got direction" << std::endl;
+		else std::cout << "Player::CheckInputText something went worng" << std::endl;
 	}
 	if (key == "exit")
 	{
@@ -71,6 +71,7 @@ void Player::SettingRoom()
 {
 	gui.UpdateText1(load.GetName());
 	gui.UpdateText2(load.GetDes());
+	gui.UpdateText4(load.GetDes());
 }
 
 
@@ -78,17 +79,17 @@ void Player::SettingRoom()
 
 int main()
 {
-	std::string holder, t1="", t2="";
+	std::string holder, t1 = "", t2 = "";
 	load.ChangeCurrentID(1);
 
 	while (gui.Running())
 	{
 
-		if(kami.CheckBasicCon())
+		if (kami.CheckBasicCon())
 		{
 			//update
 			kami.SettingRoom();
-			if (gui.ChecknGetInputStr(holder)) 
+			if (gui.ChecknGetInputStr(holder))
 			{
 				SplitString(holder, t1, t2);
 				kami.CheckInputText(t1, t2);
