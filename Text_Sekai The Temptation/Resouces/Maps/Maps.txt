@@ -13,7 +13,7 @@ EVENT 101
 ROOM_BEGIN
 02
 North of the room
-this 'room' located on the north of the room. and there are no where to go, but door to the south.
+this 'room' located on the north of the room, and there are no where to go but door to the south.
 NORTH NULL
 EAST NULL
 WEST NULL
@@ -23,7 +23,7 @@ EVENT 102
 ROOM_BEGIN
 03
 West of the room
-There is nothing here. There are door on the east and the west
+There is nothing here, There are door on the east and the west.
 NORTH NULL
 EAST 01
 WEST 04
@@ -33,7 +33,7 @@ EVENT NULL
 ROOM_BEGIN
 04
 A narrow room.
-A narrow room with only two door to the north, and to the west
+A narrow room with only two door to the north, and to the west.
 NORTH 05
 EAST NULL
 WEST 03
@@ -43,7 +43,7 @@ EVENT NULL
 ROOM_BEGIN
 05
 A out side
-the sun is shinning, a fresh air hit the norse, the door shut behide you. Look like you lock out now.
+the sun is shinning, a fresh air hit the norse, the door shut behide you Look like you lock out now.
 NORTH 06
 EAST 07
 WEST 08
@@ -53,7 +53,7 @@ EVENT 103
 ROOM_BEGIN
 06
 Forest
-There are trees all around you. Look like you lost
+There are trees all around you, Look like you lost.
 NORTH 09
 EAST NULL
 WEST NULL
@@ -63,7 +63,7 @@ EVENT NULL
 ROOM_BEGIN
 07
 Forest
-There are trees all around you. Look like you lost
+There are trees all around you, Look like you lost.
 NORTH NULL
 EAST NULL
 WEST 05
@@ -73,7 +73,7 @@ EVENT NULL
 ROOM_BEGIN
 08
 Forest
-There are trees all around you. Look like you lost
+There are trees all around you, Look like you lost.
 NORTH NULL
 EAST 05
 WEST NULL
@@ -83,7 +83,7 @@ EVENT NULL
 ROOM_BEGIN
 09
 Text
-End for now
+End for now.
 NORTH NULL 
 EAST NULL
 WEST NULL
@@ -103,7 +103,7 @@ EVENT 103
 ROOM_BEGIN//
 05
 GO BACK TO WORK
-Stop playing around the prototype and go back to work!!
+Stop playing around the prototype and go back to work!!.
 NORTH 06
 EAST NULL
 WEST NULL
@@ -113,7 +113,7 @@ EVENT NULL
 ROOM_BEGIN//
 06
 FOR FUCK SAKE
-GO BACK TO WORK
+GO BACK TO WORK.
 NORTH NULL
 EAST NULL
 WEST NULL
